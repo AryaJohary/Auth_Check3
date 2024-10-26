@@ -10,6 +10,7 @@ To start your Phoenix server:
 2. Configure your environment variables for Google OAuth:
    - `GOOGLE_CLIENT_ID`
    - `GOOGLE_CLIENT_SECRET`
+   
    These variables should be stored securely in your system environment for security reasons. If you want to run the project, create these environment variables on your local machine.
 3. Start the Phoenix endpoint with:
    - `mix phx.server`
