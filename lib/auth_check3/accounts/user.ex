@@ -43,6 +43,7 @@ defmodule AuthCheck3.Accounts.User do
     |> validate_password(opts)
   end
 
+# here, we don't have password but only email
   def oauth_registration_changeset(user, attrs, opts \\ []) do
     user
     |> cast(attrs, [:email])
@@ -59,6 +60,8 @@ defmodule AuthCheck3.Accounts.User do
     |> maybe_validate_unique_email(opts)
   end
 
+  # below validate_password method has all the requirements matched with the ones
+  # asked in the assignment
   defp validate_password(changeset, opts) do
     changeset
     |> validate_required([:password])

@@ -80,11 +80,12 @@ defmodule AuthCheck3.Accounts do
     |> Repo.insert()
   end
 
+  # below is the method for oauth user registration
   def register_oauth_user(attrs) do
     %User{}
     |> User.oauth_registration_changeset(attrs)
     |> Repo.insert()
-     
+
   end
 
   @doc """

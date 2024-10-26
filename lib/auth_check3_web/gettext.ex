@@ -21,5 +21,11 @@ defmodule AuthCheck3Web.Gettext do
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
   # use Gettext.Backend, otp_app: :auth_check3
+  # the above line is recommended from elixir intellisense, but it doesn't work properly in
+  # core_components.ex file even after making the changes it says I should.
+  # so for now, i am leaving it as it was
+
+
+
   use Gettext, otp_app: :auth_check3
 end

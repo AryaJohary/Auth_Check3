@@ -53,6 +53,13 @@ defmodule AuthCheck3Web.UserRegistrationLive do
     {:ok, socket, temporary_assigns: [form: nil]}
   end
 
+  # by default the email sending process is done right here after the
+  # phx-save binding event. but for oauth registration,
+  # i have decided to handle it at backend because for some reason,
+  # my google_auth_button is not binding with phx-click event
+  # so i am unable to listen to it right now.
+  # this is being done because it won't matter at the end. but if required
+  # we can spend some time on it and fix the google_auth_button 
   def handle_event("save", %{"user" => user_params}, socket) do
     case Accounts.register_user(user_params) do
       {:ok, user} ->

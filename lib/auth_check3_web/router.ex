@@ -83,6 +83,16 @@ defmodule AuthCheck3Web.Router do
     end
   end
 
+  # this is the route where i will pass my oauth request from.
+  # i have added the following settings on my google cloud console
+
+  # publishing status is "TESTING"
+  # this is becuase if I make the status "PUBLISHED" then it will not let me
+  # make request from localhost
+
+  # also, added some of my google accounts as "Test Users" so that I can login
+  # via those accounts
+
   scope "/auth", AuthCheck3Web do
     get "/:provider", GoogleAuthController, :request
     get "/:provider/callback", GoogleAuthController, :callback
