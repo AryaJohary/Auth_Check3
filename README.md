@@ -1,6 +1,8 @@
 # AuthCheck3
 
 This project extends the default Phoenix authentication system by seamlessly integrating Google OAuth authentication, along with traditional login, including working email notifications.
+With all the code parts, I have added comments alongside so that user can understand what is
+going on
 
 ## Setup
 
