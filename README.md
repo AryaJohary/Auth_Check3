@@ -25,6 +25,9 @@ Once the server is up, you can visit [`localhost:4000`](http://localhost:4000) i
 - **Google Login:** OAuth2 authentication has been integrated seamlessly on top of the existing authorization system.
 - **Email Functionality:** Test both traditional login and Google login mail flows by visiting the `/dev/mailbox` route.
 
+### Database Structure
+A new field is added to the user database table to indicate whether a user has signed up via Google OAuth. Users logging in with Google OAuth will not have a password saved, as authentication is handled via OAuth. The system stores both Google OAuth users and traditional email-password users in the same table, with this additional field distinguishing between them.
+
 ## Learn More
 
 - Official website: [https://www.phoenixframework.org/](https://www.phoenixframework.org/)
