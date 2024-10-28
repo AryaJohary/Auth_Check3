@@ -28,10 +28,3 @@ Once the server is up, you can visit [`localhost:4000`](http://localhost:4000) i
 ### Database Structure
 A new field is added to the user database table to indicate whether a user has signed up via Google OAuth. Users logging in with Google OAuth will not have a password saved, as authentication is handled via OAuth. The system stores both Google OAuth users and traditional email-password users in the same table, with this additional field distinguishing between them.
 
-## Learn More
-
-- Official website: [https://www.phoenixframework.org/](https://www.phoenixframework.org/)
-- Guides: [https://hexdocs.pm/phoenix/overview.html](https://hexdocs.pm/phoenix/overview.html)
-- Docs: [https://hexdocs.pm/phoenix](https://hexdocs.pm/phoenix)
-- Forum: [https://elixirforum.com/c/phoenix-forum](https://elixirforum.com/c/phoenix-forum)
-- Source: [https://github.com/phoenixframework/phoenix](https://github.com/phoenixframework/phoenix)
