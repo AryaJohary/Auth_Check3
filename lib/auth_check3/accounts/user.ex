@@ -52,26 +52,52 @@ defmodule AuthCheck3.Accounts.User do
     |> put_change(:is_oauth_user, true)
   end
 
+  # old validation logic -
+  # defp validate_email(changeset, opts) do
+  #   changeset
+  #   |> validate_required([:email])
+  #   |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "must have the @ sign and no spaces")
+  #   |> validate_length(:email, max: 160)
+  #   |> maybe_validate_unique_email(opts)
+  # end
+
+  # # below validate_password method has all the requirements matched with the ones
+  # # asked in the assignment
+  # defp validate_password(changeset, opts) do
+  #   changeset
+  #   |> validate_required([:password])
+  #   |> validate_length(:password, min: 12, max: 72)
+  #   |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
+  #   |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
+  #   |> validate_format(:password, ~r/[0-9]/, message: "at least one numerical character")
+  #   |> validate_format(:password, ~r/[!?@#$%^&*_]/, message: "at least one symbol")
+  #   |> maybe_hash_password(opts)
+  # end
+
+  # Feedback recieved -
+  # - Include validation for presence of at least one single . after @ in email address
+  # - Presence of all criterias can be combined in a single regex in case of password validation
+  # - Don't limit what special chars can be added in password, use \W
+
   defp validate_email(changeset, opts) do
     changeset
     |> validate_required([:email])
-    |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "must have the @ sign and no spaces")
+    # one single . checked after @
+    |> validate_format(:email, ~r/^[^\s]+@[^\s]+\.[^\s]+$/, message: "must have a valid format with @ and at least one . after it")
     |> validate_length(:email, max: 160)
     |> maybe_validate_unique_email(opts)
   end
 
-  # below validate_password method has all the requirements matched with the ones
-  # asked in the assignment
   defp validate_password(changeset, opts) do
     changeset
     |> validate_required([:password])
     |> validate_length(:password, min: 12, max: 72)
-    |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
-    |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
-    |> validate_format(:password, ~r/[0-9]/, message: "at least one numerical character")
-    |> validate_format(:password, ~r/[!?@#$%^&*_]/, message: "at least one symbol")
+    # all criterias are being evaluated in a single regex now
+    # and also used \W for special chars
+    |> validate_format(:password, ~r/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).+$/, message: "must contain at least one lower case, one upper case, one digit, and one special character")
     |> maybe_hash_password(opts)
   end
+
 
   defp maybe_hash_password(changeset, opts) do
     hash_password? = Keyword.get(opts, :hash_password, true)
